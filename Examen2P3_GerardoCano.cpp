@@ -10,7 +10,48 @@
 #include "Developer.h"
 #include "SeniorDev.h"
 #include "JuniorDev.h"
+#include <fstream>
+#include <cstdlib>
+#include <vector>
+#include <string>
 using namespace std;
+void leerdevs() {
+    ifstream archivo("developers.txt");
+    if (archivo.is_open()) {
+        string linea;
+        //while linea por linea
+        int start = 0;
+        bool primero=true;
+        int fincomma=0;
+        int found = linea.find(",");
+        while (getline(archivo, linea)) {
+            if (found != string::npos||primero) {
+                //cout << linea << "\n";
+                string nombre = linea.substr(0, found);
+                primero = false;
+                cout << linea.length();
+                cout << nombre;
+                start = found;
+                fincomma++;
+                if (!primero) {
+                    nombre = linea.substr(start, found);
+                    cout << nombre;
+                    start = found;
+                    fincomma++;
+                    if (fincomma == 3) {
+                        nombre = linea.substr(start, linea.length()-1);
+                        cout << nombre;
+                        primero = true;
+                        fincomma = 0;
+                        start = 0;
+                        int found = linea.find(",");
+                    }
+                }
+            }
+        }
+        archivo.close();
+    }
+}
 void menu() {
     int opcion;
     do {
@@ -18,7 +59,7 @@ void menu() {
         cin >> opcion;
         switch (opcion) {
         case 1:
-            //
+            leerdevs();
             break;
         case 2:
             break;
@@ -30,6 +71,7 @@ void menu() {
             cin >> opcion2;
             switch (opcion2) {
             case 1:
+
                 break;
             case 2:
                 break;
@@ -38,7 +80,7 @@ void menu() {
             case 4:
                 break;
             case 5:
-                cout << "adios";
+                cout << "\nadios\n";
                 break;
             }
             break;
