@@ -15,6 +15,11 @@
 #include <vector>
 #include <string>
 using namespace std;
+vector<Proyecto*> proyectos;
+vector<Historias_de_Usuario*> historias;
+vector<Tarea*> tareas;
+vector<Sprint*> sprints;
+vector<Developer*> devs;
 void leerdevs() {
     ifstream archivo("developers.txt");
     if (archivo.is_open()) {
@@ -26,31 +31,41 @@ void leerdevs() {
         int found = linea.find(",");
         while (getline(archivo, linea)) {
             if (found != string::npos||primero) {
+                cout << linea << "\n";
                 //cout << linea << "\n";
+                found = linea.find(",");
+                //cout << "found" << found << "\n";
                 string nombre = linea.substr(0, found);
                 primero = false;
-                cout << linea.length();
                 cout << nombre;
                 start = found;
                 fincomma++;
+                //cout << fincomma;
                 if (!primero) {
+                    found = linea.find(",");
                     nombre = linea.substr(start, found);
                     cout << nombre;
                     start = found;
                     fincomma++;
+                    //cout << fincomma;
                     if (fincomma == 3) {
+                        found = linea.find(",");
                         nombre = linea.substr(start, linea.length()-1);
+                       // cout << "num" << fincomma << "";
                         cout << nombre;
                         primero = true;
                         fincomma = 0;
                         start = 0;
-                        int found = linea.find(",");
+                        //int found = linea.find(",");
                     }
                 }
             }
         }
         archivo.close();
     }
+}
+void Asignar_Proyecto_ScrumMaster() {
+
 }
 void menu() {
     int opcion;
@@ -86,6 +101,21 @@ void menu() {
             break;
         case 4:
             cout << "saliendo";
+            for (Proyecto* pro : proyectos) {
+                delete pro;
+            }
+            for (Developer* dev : devs) {
+                delete dev;
+            }
+            for (Historias_de_Usuario* hist : historias) {
+                delete hist;
+            }
+            for (Tarea* t : tareas) {
+                delete t;
+            }
+            for (Sprint* s : sprints) {
+                delete s;
+            }
             break;
         }
     } while (opcion != 4);
