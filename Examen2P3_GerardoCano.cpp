@@ -2,19 +2,53 @@
 //
 
 #include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n";
+#include "Sprint.h"
+#include "ScrumMaster.h"
+#include "Historias_de_Usuario.h"
+#include "Tarea.h"
+#include "Proyecto.h"
+#include "Developer.h"
+#include "SeniorDev.h"
+#include "JuniorDev.h"
+using namespace std;
+void menu() {
+    int opcion;
+    do {
+        cout << "----- Menu Principal -----\n1. Leer archivos\n2. Guardar Archivos\n3. Asignaciones\n4. Salir\nSeleccione una opcion:\n";
+        cin >> opcion;
+        switch (opcion) {
+        case 1:
+            //
+            break;
+        case 2:
+            break;
+        case 3:
+            int opcion2;
+            cout << "----- Submenu Asignaciones -----\n1. Asignar Proyecto a ScrumMaster\n2. Listar y Asignar Sprint a Proyecto y a Scrum Master\n"<<
+                "3.Listar y Asignar Historia a Sprint, Proyecto y Senior Dev\n4.Listar y Asignar Tarea a Historia de Usuario, Sprint y Junior Dev\n"<<
+                "5.Regresar a Menu Principal\nSeleccion una opcion:\n";
+            cin >> opcion2;
+            switch (opcion2) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                cout << "adios";
+                break;
+            }
+            break;
+        case 4:
+            cout << "saliendo";
+            break;
+        }
+    } while (opcion != 4);
+}
+int main(){
+    menu();
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
