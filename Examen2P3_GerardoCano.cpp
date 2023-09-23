@@ -16,11 +16,13 @@
 #include <string>
 #include <sstream>
 using namespace std;
+//listas
 vector<Proyecto*> proyectos;
 vector<Historias_de_Usuario*> historias;
 vector<Tarea*> tareas;
 vector<Sprint*> sprints;
 vector<Developer*> devs;
+//metodos de lectura
 void leerdevs() {
     ifstream archivo("developers.txt");
     if (archivo.is_open()) {
@@ -161,6 +163,7 @@ void leersprints() {
         }*/
     }
 }
+//metodos para escribir
 void escribirDevs() {
     //id,nombreCompleto,añosExperiencia,Puesto
     ofstream archivo("developer_modificados.txt",ios::app);
@@ -207,20 +210,182 @@ void escribirTareas() {
         archivo.close();
     }
 }
+//metodos de asignacion, solo complete dos :(
+
 void Asignar_Proyecto_ScrumMaster() {
+    int op;
+    int op2;
     cout << "\n-- Asignar Proyecto a ScrumMaster ---\n----- Lista de Proyectos -----\n";
     for (Proyecto* pro : proyectos) {
         cout << "ID: " << pro->getId_Proy() << " Nombre: " << pro->getNombre()<<"\n";
     }
+    cout << "\nIngrese el proyecto que desea asignar: ";
+    cin >> op;
+    cout << "\n----- Lista de ScrumMasters -----\n";
+    for (Developer* pro : devs) {
+        if (pro->getPuesto() == "ScrumMaster") {
+            cout << "ID: " << pro->getId() << " Nombre: " << pro->getNombre() << "\n";
+        }
+    }
+    
+    cout << "\nIngrese de ScrumMaster que desea asignar al Proyecto: ";
+    cin >> op2;
+    for (Proyecto* pro : proyectos) {
+        if (pro->getId_Proy() == op) {
+            for (Developer* dev : devs) {
+                if (dev->getId() == op2) {
+                    pro->getDevs().push_back(dev->getId());
+                    //dev a scrum
+                    // man IDK
+                    //dev->getProyectos().pushback(pro);
+                    //COMO LO CASTEO
+                    //y me da miedo usar dynamic cast xd
+                }
+            }
+        }
+    }
+    cout << "Proyecto asignado exitosamente";
+    
 }
 void Asignar_sprint_pro_y_scrum() {
+    int op;
+    int op2;
+    int op3;
+    cout << "\n-- Listar y Asignar Sprint a Proyecto y a Scrum Master ---\n----- Lista de Sprints -----\n";
+    for (Sprint* pro : sprints) {
+        cout << "ID: " << pro->getId_sprint() << " Nombre: " << pro->getNombre() << "\n";
+    }
+    cout << "\nIngrese el sprint que desea asignar: ";
+    cin >> op;
 
+    cout << "\n----- Lista de Proyectos -----\n";
+    for (Proyecto* pro : proyectos) {
+        cout << "ID: " << pro->getId_Proy() << " Nombre: " << pro->getNombre() << "\n";
+    }
+    cout << "Ingrese Proyecto que desea asignar al Sprint";
+    cin >> op2;
+
+    cout << "\n----- Lista de ScrumMasters -----\n";
+    for (Developer* pro : devs) {
+        if (pro->getPuesto() == "ScrumMaster") {
+            cout << "ID: " << pro->getId() << " Nombre: " << pro->getNombre() << "\n";
+        }
+    }
+    cout << "\nIngrese de ScrumMaster que desea asignar al Proyecto: ";
+    cin >> op3;
+    for (Sprint* pro : sprints) {
+        if (pro->getId_sprint() == op) {
+            for (Developer* dev : devs) {
+                if (dev->getId() == op3) {
+                    //dev->getSprints().pushback(pro);
+                }
+            }
+        }
+        for (Sprint* pro : sprints) {
+            if (pro->getId_sprint() == op) {
+                for (Proyecto* dev : proyectos) {
+                    if (dev->getId_Proy() == op2) {
+                        pro->setId_Proyecto(dev->getId_Proy());
+                    }
+                }
+            }
+            }
+    }
+    cout << "Sprint asignado exitosamente";
 }
 void Asignar_historia_a_sprint_y_senior() {
+    //taba copy pasting con la misma logica de arriba, no revises este mucho pq es lo mismo
+    int op;
+    int op2;
+    int op3;
+    cout << "\n-- Listar y Asignar Sprint a Proyecto y a Scrum Master ---\n----- Lista de Sprints -----\n";
+    for (Sprint* pro : sprints) {
+        cout << "ID: " << pro->getId_sprint() << " Nombre: " << pro->getNombre() << "\n";
+    }
+    cout << "\nIngrese el sprint que desea asignar: ";
+    cin >> op;
 
+    cout << "\n----- Lista de Proyectos -----\n";
+    for (Proyecto* pro : proyectos) {
+        cout << "ID: " << pro->getId_Proy() << " Nombre: " << pro->getNombre() << "\n";
+    }
+    cout << "Ingrese Proyecto que desea asignar al Sprint";
+    cin >> op2;
+
+    cout << "\n----- Lista de ScrumMasters -----\n";
+    for (Developer* pro : devs) {
+        if (pro->getPuesto() == "ScrumMaster") {
+            cout << "ID: " << pro->getId() << " Nombre: " << pro->getNombre() << "\n";
+        }
+    }
+    cout << "\nIngrese de ScrumMaster que desea asignar al Proyecto: ";
+    cin >> op3;
+    for (Sprint* pro : sprints) {
+        if (pro->getId_sprint() == op) {
+            for (Developer* dev : devs) {
+                if (dev->getId() == op3) {
+                    //dev->getSprints().pushback(pro);
+                }
+            }
+        }
+        for (Sprint* pro : sprints) {
+            if (pro->getId_sprint() == op) {
+                for (Proyecto* dev : proyectos) {
+                    if (dev->getId_Proy() == op2) {
+                        pro->setId_Proyecto(dev->getId_Proy());
+                    }
+                }
+            }
+        }
+    }
+    cout << "Sprint asignado exitosamente";
 }
 void Asignar_tarea_a_historia_y_junior() {
+    //aca igual estaba  usando la misma logica jajaja
+    int op;
+    int op2;
+    int op3;
+    cout << "\n-- Listar y Asignar Sprint a Proyecto y a Scrum Master ---\n----- Lista de Sprints -----\n";
+    for (Sprint* pro : sprints) {
+        cout << "ID: " << pro->getId_sprint() << " Nombre: " << pro->getNombre() << "\n";
+    }
+    cout << "\nIngrese el sprint que desea asignar: ";
+    cin >> op;
 
+    cout << "\n----- Lista de Proyectos -----\n";
+    for (Proyecto* pro : proyectos) {
+        cout << "ID: " << pro->getId_Proy() << " Nombre: " << pro->getNombre() << "\n";
+    }
+    cout << "Ingrese Proyecto que desea asignar al Sprint";
+    cin >> op2;
+
+    cout << "\n----- Lista de ScrumMasters -----\n";
+    for (Developer* pro : devs) {
+        if (pro->getPuesto() == "ScrumMaster") {
+            cout << "ID: " << pro->getId() << " Nombre: " << pro->getNombre() << "\n";
+        }
+    }
+    cout << "\nIngrese de ScrumMaster que desea asignar al Proyecto: ";
+    cin >> op3;
+    for (Sprint* pro : sprints) {
+        if (pro->getId_sprint() == op) {
+            for (Developer* dev : devs) {
+                if (dev->getId() == op3) {
+                    //dev->getSprints().pushback(pro);
+                }
+            }
+        }
+        for (Sprint* pro : sprints) {
+            if (pro->getId_sprint() == op) {
+                for (Proyecto* dev : proyectos) {
+                    if (dev->getId_Proy() == op2) {
+                        pro->setId_Proyecto(dev->getId_Proy());
+                    }
+                }
+            }
+        }
+    }
+    cout << "Sprint asignado exitosamente";
 }
 void menu() {
     int opcion;
@@ -289,5 +454,6 @@ void menu() {
 }
 int main(){
     menu();
+    //q solo esta este main 
 }
 
