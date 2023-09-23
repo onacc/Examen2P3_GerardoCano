@@ -12,3 +12,6 @@ Sprint::Sprint(int id_sprint, string nombre, string fechaini, string fechafin, s
 void Sprint::setId_Proyecto(int id) {
 	this->id_proyecto = id;
 }
+void Sprint::to_string() {
+	cout << id_sprint << " " << nombre_sprint;
+}

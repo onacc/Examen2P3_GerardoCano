@@ -66,21 +66,109 @@ void leertareas() {
         int id;
         string desc, estado;
         while (getline(archivo, linea)) {
-            istringstream ss(linea);
+            istringstream cad(linea);
             string token;
-            getline(ss, token, ',');
+            getline(cad, token, ',');
             id = stoi(token);
-            getline(ss, desc, ',');
-            getline(ss, estado, ',');
+            getline(cad, desc, ',');
+            getline(cad, estado, ',');
           
             tareas.push_back(new Tarea(id, desc,estado));
         }
         archivo.close();
     }
-    //aver si sirve
-    for (Tarea* t : tareas) {
-        t->to_string();
-        cout << "\n";
+   
+}
+void leerhistorias() {
+    ifstream archivo("historias_usuario.txt");
+    if (archivo.is_open()) {
+        string linea;
+        getline(archivo, linea);
+        //skip
+        int id;
+        string titulo, prioridad,tiempo;
+        while (getline(archivo, linea)) {
+            istringstream cad(linea);
+            string token;
+            getline(cad, token, ',');
+            id = stoi(token);
+            getline(cad, titulo, ',');
+            getline(cad, prioridad, ',');
+            getline(cad, tiempo, ',');
+
+            historias.push_back(new Historias_de_Usuario(id, prioridad, tiempo, titulo));
+        }
+        archivo.close();
+        /*for (Historias_de_Usuario* h : historias) {
+            h->to_string();
+            cout << "\n";
+        }*/
+    }
+}
+void leerproyectos() {
+    ifstream archivo("proyecto.txt");
+    if (archivo.is_open()) {
+        string linea;
+        getline(archivo, linea);
+        //skip
+        //ID_de_Proyecto,Nombre_del_Proyecto,Fecha_de_Inicio,Fecha_de_Finalización,Estado_del_Proyecto
+        int id;
+        string titulo, inicio, fin,estado;
+        while (getline(archivo, linea)) {
+            istringstream cad(linea);
+            string token;
+            getline(cad, token, ',');
+            id = stoi(token);
+            getline(cad, titulo, ',');
+            getline(cad, inicio, ',');
+            getline(cad, fin, ',');
+            getline(cad, estado, ',');
+
+            proyectos.push_back(new Proyecto(id, titulo,inicio,fin,estado));
+        }
+        archivo.close();
+        /*for (Proyecto* h : proyectos) {
+            h->to_string();
+            cout << "\n";
+        }*/
+    }
+}
+void leersprints() {
+    ifstream archivo("sprint.txt");
+    if (archivo.is_open()) {
+        string linea;
+        getline(archivo, linea);
+        //skip
+        //ID_de_Sprint, Nombre_del_Sprint, Fecha_de_Inicio, Fecha_de_Finalización, Estado_del_Sprint
+        int id;
+        string titulo, inicio, fin, estado;
+        while (getline(archivo, linea)) {
+            istringstream cad(linea);
+            string token;
+            getline(cad, token, ',');
+            id = stoi(token);
+            getline(cad, titulo, ',');
+            getline(cad, inicio, ',');
+            getline(cad, fin, ',');
+            getline(cad, estado, ',');
+
+            sprints.push_back(new Sprint(id, titulo, inicio, fin, estado));
+        }
+        archivo.close();
+        for (Sprint* h : sprints) {
+            h->to_string();
+            cout << "\n";
+        }
+    }
+}
+void escribirDevs() {
+    //id,nombreCompleto,añosExperiencia,Puesto
+    ofstream archivo("prueba.txt",ios::app);
+    if (archivo.is_open()) {
+        for (Developer* dev : devs) {
+            archivo << dev->getId() << "," << dev->getNombre() << "," << dev->getEXP() << "," << dev->getPuesto()<<"\n";
+        }
+        archivo.close();
     }
 }
 void Asignar_Proyecto_ScrumMaster() {
@@ -104,8 +192,12 @@ void menu() {
         case 1:
             leerdevs();
             leertareas();
+            leerhistorias();
+            leersprints();
+            leerproyectos();
             break;
         case 2:
+            escribirDevs();
             break;
         case 3:
             int opcion2;

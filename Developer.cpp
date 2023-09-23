@@ -10,3 +10,15 @@ Developer::Developer(int id, int exp, string nombre, string puesto) {
 void Developer::to_string() {
 	cout << nombrecompleto<<" Puesto: "<<puesto;
 }
+int Developer::getId() {
+	return id;
+}
+int Developer::getEXP() {
+	return anisoexp;
+}
+string Developer::getNombre() {
+	return nombrecompleto;
+}
+string Developer::getPuesto() {
+	return puesto;
+}

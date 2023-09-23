@@ -10,5 +10,6 @@ public:
 	~Sprint();
 	Sprint(int, string, string, string, string);
 	void setId_Proyecto(int);
+	void to_string();
 };
 

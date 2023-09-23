@@ -9,5 +9,9 @@ public:
 	Developer(int, int, string, string);
 	~Developer();
 	void to_string();
+	int getId();
+	int getEXP();
+	string getNombre();
+	string getPuesto();
 };
 

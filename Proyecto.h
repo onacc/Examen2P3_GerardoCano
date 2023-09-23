@@ -12,5 +12,6 @@ public:
 	~Proyecto();
 	Proyecto(int,string,string,string,string);
 	vector<int> getDevs();
+	void to_string();
 };
 

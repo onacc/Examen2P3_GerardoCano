@@ -12,3 +12,6 @@ Proyecto::Proyecto(int id, string nombre, string fechaini,string fechafin,string
 vector<int> Proyecto::getDevs() {
 	return ids;
 }
+void Proyecto::to_string() {
+	cout << id_proy << " " << nombre;
+}
