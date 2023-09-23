@@ -7,3 +7,6 @@ Developer::Developer(int id, int exp, string nombre, string puesto) {
 	this->nombrecompleto = nombre;
 	this->puesto = puesto;
 }
+void Developer::to_string() {
+	cout << nombrecompleto<<" Puesto: "<<puesto;
+}

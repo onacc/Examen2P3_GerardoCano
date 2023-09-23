@@ -9,3 +9,6 @@ Tarea::Tarea(int id, string descripcion, string estado) {
 void Tarea::setId_historia(int id) {
 	this->id_historia = id;
 }
+void Tarea::to_string() {
+	cout << id_tarea << " " << descripcion;
+}

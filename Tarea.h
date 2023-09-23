@@ -9,5 +9,6 @@ public:
 	Tarea(int,  string, string);
 	~Tarea();
 	void setId_historia(int);
+	void to_string();
 };
 

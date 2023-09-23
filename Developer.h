@@ -8,5 +8,6 @@ public:
 	Developer();
 	Developer(int, int, string, string);
 	~Developer();
+	void to_string();
 };
 

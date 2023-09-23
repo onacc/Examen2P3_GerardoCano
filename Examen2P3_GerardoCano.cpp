@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
+#include <sstream>
 using namespace std;
 vector<Proyecto*> proyectos;
 vector<Historias_de_Usuario*> historias;
@@ -24,47 +25,74 @@ void leerdevs() {
     ifstream archivo("developers.txt");
     if (archivo.is_open()) {
         string linea;
-        //while linea por linea
-        int start = 0;
-        bool primero=true;
-        int fincomma=0;
-        int found = linea.find(",");
+        getline(archivo, linea);
+        //skip cabezados
+        int id,anoslol;
+        string nombre, puesto;
         while (getline(archivo, linea)) {
-            if (found != string::npos||primero) {
-                cout << linea << "\n";
-                //cout << linea << "\n";
-                found = linea.find(",");
-                //cout << "found" << found << "\n";
-                string nombre = linea.substr(0, found);
-                primero = false;
-                cout << nombre;
-                start = found;
-                fincomma++;
-                //cout << fincomma;
-                if (!primero) {
-                    found = linea.find(",");
-                    nombre = linea.substr(start, found);
-                    cout << nombre;
-                    start = found;
-                    fincomma++;
-                    //cout << fincomma;
-                    if (fincomma == 3) {
-                        found = linea.find(",");
-                        nombre = linea.substr(start, linea.length()-1);
-                       // cout << "num" << fincomma << "";
-                        cout << nombre;
-                        primero = true;
-                        fincomma = 0;
-                        start = 0;
-                        //int found = linea.find(",");
-                    }
-                }
+            istringstream cad(linea);
+            string token;
+            getline(cad, token, ',');
+            id = stoi(token);
+            getline(cad, nombre, ',');
+            getline(cad, token, ',');
+            anoslol = stoi(token);
+            getline(cad, puesto, ',');
+            if (puesto == "ScrumMaster") {
+                devs.push_back(new ScrumMaster(id, anoslol, nombre, puesto));
             }
+            else if (puesto == "JuniorDev") {
+                devs.push_back(new JuniorDev(id, anoslol, nombre, puesto));
+            }
+            else {
+                devs.push_back(new SeniorDev(id, anoslol, nombre, puesto));
+            }
+            //devs.push_back(new Developer(id, anoslol, nombre, puesto));
         }
         archivo.close();
     }
+    //aver si sirve
+    /*for (Developer* dev : devs) {
+        dev->to_string();
+        cout << "\n";
+    }*/
+}
+void leertareas() {
+    ifstream archivo("tarea.txt");
+    if (archivo.is_open()) {
+        string linea;
+        getline(archivo, linea);
+        //skip
+        int id;
+        string desc, estado;
+        while (getline(archivo, linea)) {
+            istringstream ss(linea);
+            string token;
+            getline(ss, token, ',');
+            id = stoi(token);
+            getline(ss, desc, ',');
+            getline(ss, estado, ',');
+          
+            tareas.push_back(new Tarea(id, desc,estado));
+        }
+        archivo.close();
+    }
+    //aver si sirve
+    for (Tarea* t : tareas) {
+        t->to_string();
+        cout << "\n";
+    }
 }
 void Asignar_Proyecto_ScrumMaster() {
+
+}
+void Asignar_sprint_pro_y_scrum() {
+
+}
+void Asignar_historia_a_sprint_y_senior() {
+
+}
+void Asignar_tarea_a_historia_y_junior() {
 
 }
 void menu() {
@@ -75,6 +103,7 @@ void menu() {
         switch (opcion) {
         case 1:
             leerdevs();
+            leertareas();
             break;
         case 2:
             break;
@@ -86,13 +115,16 @@ void menu() {
             cin >> opcion2;
             switch (opcion2) {
             case 1:
-
+                Asignar_Proyecto_ScrumMaster();
                 break;
             case 2:
+                Asignar_sprint_pro_y_scrum();
                 break;
             case 3:
+                Asignar_historia_a_sprint_y_senior();
                 break;
             case 4:
+                Asignar_tarea_a_historia_y_junior();
                 break;
             case 5:
                 cout << "\nadios\n";
