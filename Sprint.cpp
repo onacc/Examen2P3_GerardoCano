@@ -15,3 +15,18 @@ void Sprint::setId_Proyecto(int id) {
 void Sprint::to_string() {
 	cout << id_sprint << " " << nombre_sprint;
 }
+int Sprint::getId_sprint() {
+	return id_sprint;
+}
+string Sprint::getNombre() {
+	return nombre_sprint;
+}
+string Sprint::getFechaini() {
+	return fecha_inicio;
+}
+string Sprint::getFechafin() {
+	return fecha_final;
+}
+string Sprint::getEstado() {
+	return estado;
+}

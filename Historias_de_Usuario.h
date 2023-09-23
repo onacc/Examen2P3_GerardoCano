@@ -10,5 +10,9 @@ public:
 	~Historias_de_Usuario();
 	void setId_sprint(int);
 	void to_string();
+	int getIdhist();
+	string getTit();//teta
+	string getPrioridad();
+	string getTiempo();
 };
 

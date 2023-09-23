@@ -13,5 +13,10 @@ public:
 	Proyecto(int,string,string,string,string);
 	vector<int> getDevs();
 	void to_string();
+	int getId_Proy();
+	string getNombre();
+	string getFechaini();
+	string getfechafin();
+	string getestado();
 };
 

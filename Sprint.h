@@ -11,5 +11,10 @@ public:
 	Sprint(int, string, string, string, string);
 	void setId_Proyecto(int);
 	void to_string();
+	int getId_sprint();
+	string getNombre();
+	string getFechaini();
+	string getFechafin();
+	string getEstado();
 };
 

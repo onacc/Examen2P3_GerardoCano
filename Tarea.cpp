@@ -12,3 +12,12 @@ void Tarea::setId_historia(int id) {
 void Tarea::to_string() {
 	cout << id_tarea << " " << descripcion;
 }
+int Tarea::getId() {
+	return id_tarea;
+}
+string Tarea::getDesc() {
+	return descripcion;
+}
+string Tarea::getEstado(){
+	return estado;
+}

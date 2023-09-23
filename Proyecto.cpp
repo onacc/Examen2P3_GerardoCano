@@ -15,3 +15,18 @@ vector<int> Proyecto::getDevs() {
 void Proyecto::to_string() {
 	cout << id_proy << " " << nombre;
 }
+int Proyecto::getId_Proy() {
+	return id_proy;
+}
+string Proyecto::getNombre() {
+	return nombre;
+}
+string Proyecto::getFechaini() {
+	return fechaini;
+}
+string Proyecto::getfechafin() {
+	return fechafin;
+}
+string Proyecto::getestado() {
+	return estado;
+}

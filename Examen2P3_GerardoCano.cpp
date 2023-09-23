@@ -155,15 +155,15 @@ void leersprints() {
             sprints.push_back(new Sprint(id, titulo, inicio, fin, estado));
         }
         archivo.close();
-        for (Sprint* h : sprints) {
+        /*for (Sprint* h : sprints) {
             h->to_string();
             cout << "\n";
-        }
+        }*/
     }
 }
 void escribirDevs() {
     //id,nombreCompleto,añosExperiencia,Puesto
-    ofstream archivo("prueba.txt",ios::app);
+    ofstream archivo("developer_modificados.txt",ios::app);
     if (archivo.is_open()) {
         for (Developer* dev : devs) {
             archivo << dev->getId() << "," << dev->getNombre() << "," << dev->getEXP() << "," << dev->getPuesto()<<"\n";
@@ -171,8 +171,47 @@ void escribirDevs() {
         archivo.close();
     }
 }
+void escribirhistorias() {
+    ofstream archivo("historias_usuario_modificados.txt", ios::app);
+    if (archivo.is_open()) {
+        for (Historias_de_Usuario* dev : historias) {
+            archivo << dev->getIdhist() << "," << dev->getTit() << "," << dev->getPrioridad() << "," << dev->getTiempo() << "\n";
+        }
+        archivo.close();
+    }
+}
+void escribirPrints() {
+    ofstream archivo("sprint_modificados.txt", ios::app);
+    if (archivo.is_open()) {
+        for (Sprint* dev : sprints) {
+            archivo << dev->getId_sprint() << "," << dev->getNombre() << "," << dev->getFechaini() << "," << dev->getFechafin()<<dev->getEstado() << "\n";
+        }
+        archivo.close();
+    }
+}
+void escribirProyectos() {
+    ofstream archivo("proyecto_modificados.txt", ios::app);
+    if (archivo.is_open()) {
+        for (Proyecto* dev : proyectos) {
+            archivo << dev->getId_Proy() << "," << dev->getNombre() << "," << dev->getFechaini() << "," << dev->getfechafin() << dev->getestado() << "\n";
+        }
+        archivo.close();
+    }
+}
+void escribirTareas() {
+    ofstream archivo("tarea_modificados.txt", ios::app);
+    if (archivo.is_open()) {
+        for (Tarea* dev : tareas) {
+            archivo << dev->getId() << "," << dev->getDesc() << "," << dev->getEstado()  << "\n";
+        }
+        archivo.close();
+    }
+}
 void Asignar_Proyecto_ScrumMaster() {
-
+    cout << "\n-- Asignar Proyecto a ScrumMaster ---\n----- Lista de Proyectos -----\n";
+    for (Proyecto* pro : proyectos) {
+        cout << "ID: " << pro->getId_Proy() << " Nombre: " << pro->getNombre()<<"\n";
+    }
 }
 void Asignar_sprint_pro_y_scrum() {
 
@@ -198,6 +237,10 @@ void menu() {
             break;
         case 2:
             escribirDevs();
+            escribirhistorias();
+            escribirPrints();
+            escribirProyectos();
+            escribirTareas();
             break;
         case 3:
             int opcion2;
